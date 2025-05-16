@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva tu Café</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@latest"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-orange-100 to-yellow-50 min-h-screen flex flex-col">
+    <header class="bg-gradient-to-r from-orange-500 to-yellow-500 text-white py-4 shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-semibold">Reserva tu Café</h1>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="#experiencias" class="hover:text-orange-100 transition duration-300">Experiencias</a></li>
+                        <li><a href="#ubicaciones" class="hover:text-orange-100 transition duration-300">Ubicaciones</a></li>
+                        <li><a href="#regalos" class="hover:text-orange-100 transition duration-300">Regalos</a></li>
+                        <li><a href="#eventos" class="hover:text-orange-100 transition duration-300">Eventos</a></li>
+                        <li><a href="#login" class="hover:text-orange-100 transition duration-300">Login/Registro</a></li>
+                    </ul>
+                </nav>
+                <button id="menu-button" class="md:hidden text-white focus:outline-none" aria-label="Menú">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 z-50">
+        <div class="bg-white w-80 h-full absolute right-0 p-6">
+            <div class="flex justify-end mb-4">
+                <button id="close-menu-button" class="text-gray-700 focus:outline-none" aria-label="Cerrar menú">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="block">
+                <ul class="space-y-4">
+                    <li><a href="#experiencias" class="block text-lg text-gray-800 hover:text-orange-500 transition duration-300">Experiencias</a></li>
+                    <li><a href="#ubicaciones" class="block text-lg text-gray-800 hover:text-orange-500 transition duration-300">Ubicaciones</a></li>
+                    <li><a href="#regalos" class="block text-lg text-gray-800 hover:text-orange-500 transition duration-300">Regalos</a></li>
+                    <li><a href="#eventos" class="block text-lg text-gray-800 hover:text-orange-500 transition duration-300">Eventos</a></li>
+                    <li><a href="#login" class="block text-lg text-gray-800 hover:text-orange-500 transition duration-300">Login/Registro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <section class="text-center mb-12">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-4">Bienvenido a la Experiencia del Café</h2>
+            <p class="text-gray-600 text-lg">Descubre y reserva experiencias únicas de café.</p>
+            <a href="#experiencias" class="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300 inline-block">Explorar Experiencias</a>
+        </section>
+
+        <section id="login" class="mb-12">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Login / Registro</h2>
+    <div class="flex justify-center">
+        <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+                    <input type="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+                    <input type="password" id="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div id="login-mensaje"></div> <button type="submit" id="login-submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Iniciar Sesión</button>
+            </form>
+            <div id="register-section" class="mt-6">
+                <p class="text-center text-gray-500 text-sm">¿No tienes una cuenta?</p>
+                <button id="register-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-2">Regístrate</button>
+            </div>
+            <form id="register-form" class="space-y-4 hidden mt-8">
+                <div>
+                    <label for="register-email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+                    <input type="email" id="register-email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div>
+                    <label for="register-password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+                    <input type="password" id="register-password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div>
+                    <label for="register-dni" class="block text-gray-700 text-sm font-bold mb-2">DNI</label>
+                    <input type="text" id="register-dni" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div id="registro-mensaje"></div> <button type="submit" id="register-submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Registrarse</button>
+                <div id="login-section" class="mt-6">
+                    <p class="text-center text-gray-500 text-sm">¿Ya tienes una cuenta?</p>
+                    <button id="login-button" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-2">Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+        <section id="experiencias" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Experiencias Destacadas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,shop" alt="Taller de Barismo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Taller de Barismo</h3>
+                        <p class="text-gray-600 mb-4">Aprende a preparar el café perfecto.</p>
+                        <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Reservar</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,farm" alt="Visita a Finca Cafetera" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Visita a Finca Cafetera</h3>
+                        <p class="text-gray-600 mb-4">Descubre el origen de tu café.</p>
+                        <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Reservar</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,tasting" alt="Cata de Café" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Cata de Café</h3>
+                        <p class="text-gray-600 mb-4">Explora diferentes sabores y aromas.</p>
+                        <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Reservar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ubicaciones" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Nuestras Ubicaciones</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,shop,city" alt="Ubicación 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Ciudad Café</h3>
+                        <p class="text-gray-600 text-sm">Calle Principal #123, Ciudad</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,shop,countryside" alt="Ubicación 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Campo Café</h3>
+                        <p class="text-gray-600 text-sm">Carretera Antigua #45, Pueblo</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,shop,beach" alt="Ubicación 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Playa Café</h3>
+                        <p class="text-gray-600 text-sm">Avenida del Mar #789, Playa</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reservar-mesa" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Reserva tu Mesa</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 w-full max-w-md mx-auto">
+                <form id="table-reservation-form" class="space-y-4">
+    <div>
+        <label for="reservation-date" class="block text-gray-700 text-sm font-bold mb-2">Fecha</label>
+        <input type="date" id="reservation-date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+    </div>
+    <div>
+        <label for="reservation-time" class="block text-gray-700 text-sm font-bold mb-2">Hora</label>
+        <input type="time" id="reservation-time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+    </div>
+    <div>
+        <label for="reservation-guests" class="block text-gray-700 text-sm font-bold mb-2">Número de Personas</label>
+        <input type="number" id="reservation-guests" min="1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+    </div>
+    <div id="reservation-message"></div> <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Reservar Mesa</button>
+</form>
+            </div>
+        </section>
+
+        <section id="opciones-cafe" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Opciones de Café</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Espresso</h3>
+                    <p class="text-gray-600 text-sm">Un shot de café concentrado.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Cappuccino</h3>
+                    <p class="text-gray-600 text-sm">Espresso con leche vaporizada y espuma.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Café Latte</h3>
+                    <p class="text-gray-600 text-sm">Espresso con leche vaporizada.</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Café Helado</h3>
+                    <p class="text-gray-600 text-sm">Café con hielo, perfecto para el verano.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="opciones-dieteticas" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Opciones Dietéticas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Leche de Almendras</h3>
+                    <p class="text-gray-600 text-sm">Disponible para todas las bebidas de café.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Leche de Soya</h3>
+                    <p class="text-gray-600 text-sm">Alternativa vegetal a la leche.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Opciones Sin Azúcar</h3>
+                    <p class="text-gray-600 text-sm">Endulzantes sin azúcar disponibles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="regalos" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Regalos para Amantes del Café</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,beans" alt="Regalo 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Paquete de Café Premium</h3>
+                        <p class="text-gray-600 mb-4">Selección de los mejores granos.</p>
+                        <p class="text-gray-700 font-bold text-lg">$25</p>
+                        <a href="#" class="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Comprar</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,mug" alt="Regalo 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Taza de Diseño Exclusivo</h3>
+                        <p class="text-gray-600 mb-4">Perfecta para disfrutar cada sorbo.</p>
+                        <p class="text-gray-700 font-bold text-lg">$15</p>
+                        <a href="#" class="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Comprar</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://source.unsplash.com/featured/?coffee,maker" alt="Regalo 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Cafetera Italiana Clásica</h3>
+                        <p class="text-gray-600 mb-4">Prepara un espresso auténtico.</p>
+                         <p class="text-gray-700 font-bold text-lg">$35</p>
+                        <a href="#" class="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="eventos" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Próximos Eventos</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                    <img src="https://source.unsplash.com/featured/?coffee,festival" alt="Evento 1" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Festival del Café Local</h3>
+                        <p class="text-gray-600 mb-4">Disfruta de degustaciones y talleres.</p>
+                        <p class="text-gray-700 font-bold">Fecha: 15 de Julio, 2024</p>
+                    </div>
+                    <div class="p-4">
+                         <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                    <img src="https://source.unsplash.com/featured/?coffee,competition" alt="Evento 2" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Competencia de Baristas</h3>
+                        <p class="text-gray-600 mb-4">Presencia la creatividad en cada taza.</p>
+                        <p class="text-gray-700 font-bold">Fecha: 22 de Agosto, 2024</p>
+                    </div>
+                    <div class="p-4">
+                        <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded-full transition duration-300 inline-block">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+                    <img src="https://source.unsplash.com/featured/?coffee,conference" alt="Evento 3" class="w-full h-48 object-cover">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Conferencia Internacional de Café</h3>
+<p class="text-gray-600 mb-4">Expertos comparten las últimas tendencias.</p>
+                        <p class="text-gray-700 font-bold">Fecha: 10 de Septiembre, 2024</p>
+                    </div>
+                    <div class="p-4">
+    </body>
+
+    <script src="/static/scripts.js"></script>
